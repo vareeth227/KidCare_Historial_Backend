@@ -27,4 +27,7 @@ public class Historial {
     // Resumen estructurado generado por Claude para el médico
     @Column(name = "resumen", nullable = false, columnDefinition = "TEXT")
     private String resumen;
+
+    @Column(name = "generado_por_ia", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean generadoPorIA;
 }

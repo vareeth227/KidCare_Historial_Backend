@@ -18,4 +18,6 @@ public class HistorialResponseDTO {
 
     // Resumen generado por Claude
     private String resumen;
+
+    private Boolean generadoPorIA;
 }

@@ -98,6 +98,7 @@ public class HistorialService {
         historial.setIdMenor(dto.getIdMenor());
         historial.setFecha(LocalDate.now());
         historial.setResumen(resumen);
+        historial.setGeneradoPorIA(generadoPorIA);
         historialRepository.save(historial);
 
         GenerarHistorialResponseDTO response = new GenerarHistorialResponseDTO();
@@ -117,6 +118,7 @@ public class HistorialService {
         dto.setIdMenor(historial.getIdMenor());
         dto.setFecha(historial.getFecha());
         dto.setResumen(historial.getResumen());
+        dto.setGeneradoPorIA(historial.getGeneradoPorIA() != null && historial.getGeneradoPorIA());
         return dto;
     }
 }
