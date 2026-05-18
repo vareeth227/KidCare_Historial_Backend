@@ -8,8 +8,10 @@ import com.kidcare.historial_service.model.Historial;
 import com.kidcare.historial_service.repository.HistorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -54,7 +56,7 @@ public class HistorialService {
     // Obtiene el historial más reciente de un menor
     public HistorialResponseDTO obtenerUltimo(Integer idMenor) {
         Historial historial = historialRepository.findTopByIdMenorOrderByFechaDesc(idMenor)
-                .orElseThrow(() -> new RuntimeException("No hay historial para este menor"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No hay historial para este menor"));
         return mapToDTO(historial);
     }
 

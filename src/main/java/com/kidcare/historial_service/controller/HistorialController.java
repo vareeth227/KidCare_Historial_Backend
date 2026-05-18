@@ -46,4 +46,12 @@ public class HistorialController {
             @Valid @RequestBody GenerarHistorialRequestDTO dto) {
         return ResponseEntity.ok(historialService.generarConClaude(dto));
     }
+
+    // POST /api/historial/interno/generar — llamado internamente por MS Acceso al
+    // verificar el token médico, sin JWT (ruta interna entre servicios)
+    @PostMapping("/interno/generar")
+    public ResponseEntity<GenerarHistorialResponseDTO> generarInterno(
+            @Valid @RequestBody GenerarHistorialRequestDTO dto) {
+        return ResponseEntity.ok(historialService.generarConClaude(dto));
+    }
 }

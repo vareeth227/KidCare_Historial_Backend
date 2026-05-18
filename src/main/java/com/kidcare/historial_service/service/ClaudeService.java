@@ -13,7 +13,7 @@ public class ClaudeService {
     @Value("${claude.api.key:}")
     private String apiKey;
 
-    @Value("${claude.model:gpt-5.4-mini-2026-03-17}")
+    @Value("${claude.model:gpt-4o-mini}")
     private String model;
 
     @Value("${claude.api.url:https://api.openai.com/v1/chat/completions}")
@@ -37,9 +37,16 @@ public class ClaudeService {
             "1. Escribe ÚNICAMENTE texto plano en español. " +
             "2. NO uses JSON, XML ni ningún formato de datos estructurado. " +
             "3. NO uses markdown (sin #, **, *, >, -, ``` ni similares). " +
-            "4. Organiza el texto en tres párrafos con estos encabezados en texto plano: " +
-            "SINTOMAS PRINCIPALES, EVOLUCION TEMPORAL, OBSERVACIONES ADICIONALES. " +
-            "5. Cada encabezado va seguido de dos puntos y el texto del párrafo en la misma línea.\n\n" +
+            "4. Organiza el texto en EXACTAMENTE cinco secciones con estos encabezados: " +
+            "Motivo de consulta, Síntomas, Evolución, Medicación administrada, Antecedentes. " +
+            "5. Cada encabezado va seguido de dos puntos y el texto en la misma línea. " +
+            "6. Si no hay información para una sección escribe 'Sin registros'. " +
+            "Ejemplo de formato: " +
+            "Motivo de consulta: El cuidador reporta fiebre y tos persistente. " +
+            "Síntomas: Fiebre de 38,5°C, tos seca, pérdida de apetito. " +
+            "Evolución: Los síntomas comenzaron hace 2 días y han aumentado progresivamente. " +
+            "Medicación administrada: Sin registros. " +
+            "Antecedentes: Sin registros.\n\n" +
             "Contexto: " + contextoMenor + "\n\n" +
             "Observaciones registradas:\n" + obsText;
 
