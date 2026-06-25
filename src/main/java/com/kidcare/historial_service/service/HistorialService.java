@@ -69,6 +69,8 @@ public class HistorialService {
             Map[] respuesta = restTemplate.getForObject(url, Map[].class);
             todasInteracciones = respuesta != null ? Arrays.asList(respuesta) : new ArrayList<>();
         } catch (Exception e) {
+            System.err.println("[HISTORIAL ERROR] Error al conectar con Chatbot Service en " + url + ": " + e.getMessage());
+            e.printStackTrace();
             todasInteracciones = new ArrayList<>();
         }
 
@@ -92,6 +94,8 @@ public class HistorialService {
             resumen = claudeService.generarResumenClinico(observaciones, "Menor id: " + dto.getIdMenor());
             generadoPorIA = true;
         } catch (Exception e) {
+            System.err.println("[HISTORIAL DIAGNOSTIC] Error al generar resumen con ClaudeService: " + e.getMessage());
+            e.printStackTrace();
             resumen = "Resumen de observaciones:\n- " + String.join("\n- ", observaciones);
             generadoPorIA = false;
         }
